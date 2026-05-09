@@ -122,7 +122,8 @@
     @apply border-border outline-ring/50;
     }
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground min-h-screen bg-gradient-to-r from-slate-900 via-indigo-900 to-purple-900;
+    background-attachment: fixed;
     }
   html {
     @apply font-sans;
