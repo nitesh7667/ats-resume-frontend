@@ -10,10 +10,11 @@ import {
   Settings,
   Zap,
   Award,
-  LayoutTemplate
+  LayoutTemplate,
 } from "lucide-react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { BACKEND_URL } from "@/config";
 
 function App() {
   const navigate = useNavigate();
@@ -21,9 +22,14 @@ function App() {
   const handleLogout = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/auth/logout",
+        `${BACKEND_URL}/api/auth/logout`,
         {},
-        { withCredentials: true },
+        { 
+          withCredentials: true,
+          headers: { 
+            "Authorization": `Bearer ${localStorage.getItem("token")}`
+          }
+        },
       );
       if (res.status === 200) {
         localStorage.removeItem("token");
@@ -37,7 +43,6 @@ function App() {
   };
 
   const aiTools = [
-
     {
       title: "ATS Resume Analyzer",
       description:
